@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+    ui:
+        image: gitlab-monitor:latest
+        build: .
+        ports:
+            - 10099:80
+        restart: always
+        volumes:
+            - ./src/config.json:/usr/share/nginx/html/config.json
+        labels:
+            - "traefik.enable=true"
+            - "traefik.frontend.rule=Host:gitlab.com"
+            - "traefik.port=80"
+        command: yarn run dev

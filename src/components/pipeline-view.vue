@@ -33,8 +33,7 @@
         </div>
         <gitlab-icon v-if="showDurations && duration !== null" class="clock-icon" name="clock" size="10" />
         <span v-if="showDurations && duration !== null" class="duration">{{ durationString }}</span>
-        <gitlab-icon v-if="showUsers && duration !== null" class="user-icon" name="user" size="10" />
-        <span v-if="showUsers && pipeline.user !== null" class="user">{{ pipeline.user.name }}</span>
+        <img v-if="showUsers && pipeline.user.avatar_url" :src="pipeline.user.avatar_url" width="40px" class="avatar-user-img" />
       </div>
     </div>
   </div>
@@ -215,6 +214,10 @@
 
       &.with-stages-names {
         padding-bottom: 20px;
+      }
+
+      .avatar-user-img {
+        border-radius: 50%;
       }
 
       .pipeline-id-link {

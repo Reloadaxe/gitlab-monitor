@@ -1,6 +1,7 @@
 <template>
   <div v-if="(showPipelinesOnly ? (pipelineCount > 0) : true) && showProjectOnlyOn" :class="['project-card', status]">
     <div class="content">
+      <img v-if="project !== null && project.avatar_url" :src="project.avatar_url" width="80px" class="avatar-img" />
       <div class="title small">{{ project !== null ? project.namespace.name : '...' }} /</div>
       <a class="title" target="_blank" rel="noopener noreferrer" :href="project !== null ? project.web_url : '#'">
         {{ project !== null ? project.name : 'Loading project...' }}
@@ -361,7 +362,11 @@
       }
 
       .pipeline-container {
-        padding: 8px 0 0 0;
+        padding: 40px 0 0 0;
+      }
+
+      .avatar-img {
+        float: right;
       }
 
       .spinner-icon {
